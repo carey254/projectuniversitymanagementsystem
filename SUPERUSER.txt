@@ -1,0 +1,26 @@
+###This is how you set admin/superuser details###
+
+###First you need to run python manage.py shell###
+
+###Then update the new email and new password placeholders with your desired values, finally run the below commands in the Django Shell that you launched###
+
+###Exit the shell by typing exit() or pressing Ctrl+D.###
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
+
+# Get the User model
+User = get_user_model()
+# Fetch the superuser
+user = User.objects.get(is_superuser=True)  # Assuming you have only one superuser
+
+# Update the email
+user.email = 'admin@embuni.ac.ke'  # Replace with the new email
+
+# Update the password
+user.password = make_password('2023Django')  # Replace with the new password
+
+# Save the changes
+user.save()
+
+
